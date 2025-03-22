@@ -1,0 +1,93 @@
+#include<iostream>
+#include<string>
+#include<limits>
+using namespace std;
+struct Contact{
+	string name;
+	string last_name;
+	string phone_number;
+	string email_adress;
+	string adress;
+};
+int menu(Contact contact[100]){
+	int choice;
+	int count=0;
+	string Last_name;
+	cout << "Enter the 1st contact specifications."<<endl;
+	cout<< "Enter Contact Name:"<<endl;
+	getline(cin,contact[count].name);
+	cout<< "Enter Contact Last Name:"<<endl;
+	getline(cin,contact[count].last_name);
+	cout<< "Enter Contact Phone Number:"<<endl;
+    getline(cin,contact[count].phone_number);
+    cout << "Enter Email Adress: "<< endl;
+   	getline(cin,contact[count].email_adress);
+   	cout << "Enter Adress: "<< endl;
+   	getline(cin,contact[count].adress);
+    count++;
+	do{
+		cout << endl << endl;
+		cout << "1.Add to conatact"<<endl<<"2.view contact"<<endl<<"3.search for contact"<< endl<<"4.Exit"<<endl;
+    	cout << "choose your choice: ";
+    	cin >> choice;
+    	cin.ignore();
+			if (choice==1){
+				cout<< "Enter Contact Name:"<<endl;
+				getline(cin,contact[count].name);
+				cout<< "Enter Contact Last Name:"<<endl;
+	            getline(cin,contact[count].last_name);
+	            cout<< "Enter Contact Phone Number:"<<endl;
+	            getline(cin,contact[count].phone_number);
+	            cout << "Enter Email Adress: "<< endl;
+   	            getline(cin,contact[count].email_adress);
+   	            cout << "Enter Adress: "<< endl;
+   	            getline(cin,contact[count].adress);
+                count++;}	
+            else if (choice==2){
+            	for (int i=0;i<count;i++)
+             	{
+                	cout << "Contact Name:"<<endl<< contact[i].name << endl;
+                	cout << "Contact Last Name:"<<endl<<contact[i].last_name<< endl;
+                	cout << "Contact Phone Number:"<<endl<<contact[i].phone_number<<endl;
+                	cout << "Email Adress: " << endl << contact[i].email_adress<<endl;
+                	cout << "Adress: "<< endl <<contact[i].adress<<endl;
+                }
+                }
+            else if (choice==3){
+            	bool flag=1;
+				cout << "Enter the last name you want to search for: ";
+            	cin >> Last_name;
+            	cin.ignore();
+            	for (int i=0;i<count;i++){
+            	    if (Last_name==contact[i].last_name)
+             	    {
+             		    flag=0;
+                     	cout << "Contact Name:"<<endl<< contact[i].name << endl;
+                    	cout <<  "Contact Last Name:"<<endl<<contact[i].last_name<< endl;
+                    	cout << "Contact Phone Number:"<<endl<<contact[i].phone_number<<endl;
+                     	cout << "Email Adress: " << endl << contact[i].email_adress<<endl;
+                    	cout << "Adress: "<< endl <<contact[i].adress<<endl;
+                }
+				}
+                if(flag)
+                {
+                	cout << "This person is not in your contact list.";
+				}
+                }
+            else if (choice==4){
+                    cout << "see you!";
+		        }
+		    else if (cin.fail())
+            {
+                    cout << "Please enter an integer";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            else{
+		        	cout << "please choose according to the choices given!" << endl;}
+	}while (choice!=4);
+}
+int main(){
+	Contact contact[100];
+	menu(contact);
+}
